@@ -16,4 +16,14 @@ class InfoUser extends Model
 
     //Per ignorare i timestamps
     public $timestamps = false; 
+
+    /**
+     * DB RELATIONSHIPS
+     */
+
+    //Con Users (one to one)
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
