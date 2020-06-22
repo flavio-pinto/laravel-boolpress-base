@@ -17,5 +17,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-//Router Users
+//Route Users
 Route::resource('users', 'UserController');
+
+//Route posts
+Route::resource('posts', 'PostController');

@@ -13,6 +13,7 @@
             <ul class="navbar-list">
                 <li><a href="{{route('home')}}">Home</a></li>
                 <li><a href="{{route('users.index')}}">Users</a></li>
+                <li><a href="{{route('posts.index')}}">Archive</a></li>
             </ul>
         </nav>
     </header>
