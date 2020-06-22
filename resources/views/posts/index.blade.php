@@ -11,5 +11,7 @@
             <hr>
         @endif
     @endforeach
+    {{-- NAVIGAZIONE PER VEDERE GLI ALTRI POSTS --}}
+    <h4>Navigation</h4>
+    {{$posts->links()}}{{-- sfrutta "paginate" per poter navigare nelle varie pagine di posts. Si può stilare ed è Bootstrap-ready. VEDI DOCUMENTAZIONE --}}
 @endsection
-

@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        //$posts = Post::all();
+        $posts = Post::paginate(10); //carico solo 10 posts 
 
         return view('posts.index', compact('posts'));
     }
