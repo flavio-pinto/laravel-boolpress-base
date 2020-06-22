@@ -4,24 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InfoUser extends Model
+class Post extends Model
 {
     //Mass assign
     protected $fillable = [
         'user_id',
-        'phone',
-        'address',
-        'avatar'
+        'title',
+        'body'
     ];
-
-    //Per ignorare i timestamps
-    public $timestamps = false; 
 
     /**
      * DB RELATIONSHIPS
      */
 
-    //Con User (one to one)
+    //Con User
     public function user()
     {
         return $this->belongsTo('App\User');

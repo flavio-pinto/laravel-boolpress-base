@@ -12,8 +12,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserTableSeeder::class,
-            InfoUserTableSeeder::class
+            UserTableSeeder::class, //ovviamente va messo per primo quello con la primary key
+            InfoUserTableSeeder::class,
+            PostTableSeeder::class
         ]);
     }
 }
