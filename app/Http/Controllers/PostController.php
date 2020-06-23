@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -38,7 +39,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $users = User::all();
+
+        //Validazione
+        $request->validate([
+            'title' => 'required|max:150',
+            'body' => 'required',
+        ]);
+        
+        //Istanza
+        $newPost = new Post();
+        $newPost->user_id = $users->random()->id;
+        $newPost->fill($data);
+        $saved = $newPost->save();
+        
+        if($saved) {
+            //return back()->with('post_saved', $newPost->title); //in caso volessimo tornare alla pagina create 
+            return redirect()->route('posts.show', $newPost->id)->with('post_saved', $newPost->title); //non $post->id perché altrimenti c'è il rischio che se mentre aggiungi un post ne aggiunge uno qualcun altro non ti ritorna quello giusto!
+        }
     }
 
     /**
