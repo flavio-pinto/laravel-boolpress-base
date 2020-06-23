@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class, //ovviamente va messo per primo quello con la primary key
             InfoUserTableSeeder::class,
-            PostTableSeeder::class
+            PostTableSeeder::class,
+            CommentTableSeeder::class
         ]);
     }
 }

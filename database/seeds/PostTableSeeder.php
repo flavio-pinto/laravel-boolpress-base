@@ -14,7 +14,7 @@ class PostTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $counter = 50;
+        $counter = 100;
         $users = User::all();
 
         for($i = 0; $i < $counter; $i++) {
