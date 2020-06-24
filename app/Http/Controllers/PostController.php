@@ -43,11 +43,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //Validazione
-        $request->validate([
-            'title' => 'required|max:150',
-            'body' => 'required',
-            'tags.*' => 'exists:tags,id' //controlla se qualcuno prova a mettere un tag che non abbiamo nella tabella tags
-        ]);
+        $request->validate($this->validationRules());
 
         $data = $request->all();
 
@@ -108,11 +104,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required|max:150',
-            'body' => 'required',
-            'tags.*' => 'exists:tags,id' //controlla se qualcuno prova a mettere un tag che non abbiamo nella tabella tags
-        ]);
+        $request->validate($this->validationRules($post->id));
 
         $data = $request->all();
         $updated = $post->update($data);
@@ -149,5 +141,18 @@ class PostController extends Controller
         if($deleted) {
             return redirect()->route('posts.index')->with('post-deleted', $title);
         }
+    }
+    
+    //Utilities
+    //Validation rules
+    private function validationRules($id = null) { //mettiamo null di default visto che usiamo questo metodo anche in store, dove non serve il parametro
+        return [
+            'title' => [
+                'required',
+                'max:150'
+            ],
+            'body' => 'required',
+            'tags.*' => 'exists:tags,id' //controlla se qualcuno prova a mettere un tag che non abbiamo nella tabella tags
+        ];
     }
 }
