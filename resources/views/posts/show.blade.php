@@ -8,10 +8,11 @@
         </div>
     @endif
 
-    <h2 class="mb-4">{{$post->title}}</h2>
+    <h2 class="mb-2">{{$post->title}}</h2>
+    <a class="test-primary" href="{{route('posts.edit', $post->id)}}">Modifica post</a>
     <h4 class="author">Scritto da: {{$post->user['name']}}</h4> {{-- si può scrivere anche $post->user->name --}}
     <h4>Created: {{$post->created_at}}, Last modified: {{$post->updated_at}}</h4>
-    <p>{{$post->body}}</p>
+    <p class="mt-5">{{$post->body}}</p>
     
     <section class="wrap-tags mt-2 mb-2">
         <h5>Tags</h5>
