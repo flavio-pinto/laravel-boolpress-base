@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class, //ovviamente va messo per primo quello con la primary key
             InfoUserTableSeeder::class,
             PostTableSeeder::class,
-            CommentTableSeeder::class
+            CommentTableSeeder::class,
+            TagTableSeeder::class
         ]);
     }
 }

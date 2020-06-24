@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('posts.index')}}">Archive</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('posts.create')}}">New Post</a>
+                </li>
             </ul>
         </nav>
     </header>

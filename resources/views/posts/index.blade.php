@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>Blog archive</h1>
+    <h1 class="mb-4">Blog archive</h1>
     @foreach ($posts as $post)
         <h2>{{$post->title}}</h2>
         <h5 class="author">{{$post->user['name']}}</h5> {{-- si può scrivere anche $post->user->name --}}

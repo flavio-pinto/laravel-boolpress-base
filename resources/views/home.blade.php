@@ -2,7 +2,6 @@
 
 @section('content')
     <h1>Welcome to our blog!</h1>
-    <a href="{{route('posts.create')}}">Crea un nuovo post</a>
 
     @foreach ($posts as $post)
         <h2>{{$post->title}}</h2>

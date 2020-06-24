@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Tag;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -16,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         //$posts = Post::all();
-        $posts = Post::paginate(10); //carico solo 10 posts 
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10); //carico solo 10 posts 
 
         return view('posts.index', compact('posts'));
     }
@@ -28,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
 
     /**
@@ -39,25 +42,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $users = User::all();
-
         //Validazione
         $request->validate([
             'title' => 'required|max:150',
             'body' => 'required',
+            'tags.*' => 'exists:tags,id' //controlla se qualcuno prova a mettere un tag che non abbiamo nella tabella tags
         ]);
+
+        $data = $request->all();
+
+        //Get user ID
+        $data['user_id'] = 1;
+
+        //generate post slug
+        $data['slug'] = Str::slug($data['title'], '-');;
         
         //Istanza
         $newPost = new Post();
-        $newPost->user_id = $users->random()->id;
         $newPost->fill($data);
         $saved = $newPost->save();
         
         if($saved) {
-            //return back()->with('post_saved', $newPost->title); //in caso volessimo tornare alla pagina create 
-            return redirect()->route('posts.show', $newPost->id)->with('post_saved', $newPost->title); //non $post->id perché altrimenti c'è il rischio che se mentre aggiungi un post ne aggiunge uno qualcun altro non ti ritorna quello giusto!
+            if(!empty($data['tags'])) {
+                $newPost->tags()->attach($data['tags']);
+            }
+            return redirect()->route('posts.show', $newPost->slug)->with('post_saved', $newPost->title); //non $post->id perché altrimenti c'è il rischio che se mentre aggiungi un post ne aggiunge uno qualcun altro non ti ritorna quello giusto!
         }
     }
 
