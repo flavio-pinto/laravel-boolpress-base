@@ -1,6 +1,13 @@
 @extends('layouts.main')
 
 @section('content')
+    @if(session('post-deleted'))
+        <div class="alert alert-success">
+            <p>Il seguente post è stato eliminato con successo:</p>
+            {{session('post-deleted')}}
+        </div>
+    @endif
+
     <h1 class="mb-4">Blog archive</h1>
     @foreach ($posts as $post)
         <h2>{{$post->title}}</h2>

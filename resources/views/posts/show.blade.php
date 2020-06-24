@@ -9,7 +9,15 @@
     @endif
 
     <h2 class="mb-2">{{$post->title}}</h2>
-    <a class="test-primary" href="{{route('posts.edit', $post->id)}}">Modifica post</a>
+    {{-- edit button --}}
+    <a class="btn btn-sm btn-primary" href="{{route('posts.edit', $post->id)}}">Modifica post</a>
+    {{-- delete --}}
+    <form class="d-inline" action="{{route('posts.destroy', $post->id)}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <input class="btn btn-sm btn-danger" type="submit" value="Cancella post">
+    </form>
+    
     <h4 class="author">Scritto da: {{$post->user['name']}}</h4> {{-- si può scrivere anche $post->user->name --}}
     <h4>Created: {{$post->created_at}}, Last modified: {{$post->updated_at}}</h4>
     <p class="mt-5">{{$post->body}}</p>
