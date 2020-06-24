@@ -67,8 +67,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($slug)
     {
+        $post = Post::where('slug', $slug)->first(); //first serve in caso ci fossero due slug uguali, ma ci sono metodi migliori per gestire questo tipo di situazioni
+
+        if(empty($post)) {
+            abort(404);
+        }
+        
         return view('posts.show', compact('post'));
     }
 

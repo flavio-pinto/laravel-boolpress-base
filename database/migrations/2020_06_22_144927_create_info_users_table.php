@@ -15,7 +15,7 @@ class CreateInfoUsersTable extends Migration
     {
         Schema::create('info_users', function (Blueprint $table) {
             $table->foreignId('user_id'); //per la foreign key
-            $table->string('phone', 20);
+            $table->string('phone', 50);
             $table->string('address');
             $table->string('avatar');
 

@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'/>
     <title>Blog</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <h2 class="navbar-brand">Blog</h2>
-            <ul class="navbar-list">
-                <li><a href="{{route('home')}}">Home</a></li>
-                <li><a href="{{route('users.index')}}">Users</a></li>
-                <li><a href="{{route('posts.index')}}">Archive</a></li>
+    <header class="mb-5">
+        <nav class="navbar navbar-expand navbar-light bg-light">
+            <a href="{{route('home')}}" class="navbar-brand">Blog</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home')}}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('users.index')}}">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('posts.index')}}">Archive</a>
+                </li>
             </ul>
         </nav>
     </header>

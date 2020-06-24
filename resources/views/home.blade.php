@@ -6,10 +6,10 @@
 
     @foreach ($posts as $post)
         <h2>{{$post->title}}</h2>
-        <h4 class="author">di {{$post->user['name']}}</h4> {{-- si può scrivere anche $post->user->name --}}
-        <h4>Created: {{$post->created_at}}, Last modified: {{$post->updated_at}}</h4>
+        <h5 class="author">di {{$post->user['name']}}</h5> {{-- si può scrivere anche $post->user->name --}}
+        <h6>Created: {{$post->created_at}}, Last modified: {{$post->updated_at}}</h6>
         <p>{{$post->body}}</p>
-        <a href="{{route('posts.show', $post->id)}}">Link articolo completo</a>
+        <a href="{{route('posts.show', $post->slug)}}">Link articolo completo</a>
         @if(!$loop->last)
             <hr>
         @endif

@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id'); //per la foreign key
             $table->string('title', 150);
             $table->mediumText('body');
+            $table->string('slug');
             $table->timestamps();
 
             //Relation
